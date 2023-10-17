@@ -1,21 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-const initialState = {
-  list: [],
-};
+import categoriesSlice from "./categories/categoriesSlice.js";
 
-function reducer(state = initialState, action) {
-  return state;
-}
-
-const store = configureStore({ reducer });
+const store = configureStore({
+  reducer: {
+    categories: categoriesSlice,
+  },
+});
 
 export default store;
-
-// export const store = configureStore({
-//   reducer: {
-//     categories: "cat",
-//   },
-
-//   devTools: true,
-// });
