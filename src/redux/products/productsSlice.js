@@ -3,9 +3,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BASE_URL } from "../../utils/constants.js";
 import axios from "axios";
 
-export const getCategories = createAsyncThunk("categories/getCategories", async (_, thunkAPI) => {
+export const getProducts = createAsyncThunk("products/getProducts", async (_, thunkAPI) => {
   try {
-    const res = await axios(`${BASE_URL}/categories`);
+    const res = await axios(`${BASE_URL}/products`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -13,25 +13,27 @@ export const getCategories = createAsyncThunk("categories/getCategories", async 
   }
 });
 
-const categoriesSlice = createSlice({
-  name: "categories",
+const productsSlice = createSlice({
+  name: "prooducts",
   initialState: {
     list: [],
+    // filtered: [],
+    // related: [],
     isLoading: false,
   },
   extraReducers: (builder) => {
-    builder.addCase(getCategories.pending, (state) => {
+    builder.addCase(getProducts.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(getCategories.fulfilled, (state, action) => {
+    builder.addCase(getProducts.fulfilled, (state, action) => {
       state.list = action.payload;
       state.isLoading = false;
     });
-    builder.addCase(getCategories.rejected, (state) => {
+    builder.addCase(getProducts.rejected, (state) => {
       state.isLoading = false;
       console.log("ОТКЛОНЕНО");
     });
   },
 });
 
-export default categoriesSlice.reducer;
+export default productsSlice.reducer;
