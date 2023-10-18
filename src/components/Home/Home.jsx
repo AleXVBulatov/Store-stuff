@@ -10,7 +10,7 @@
 
 // const Home = (props) => {
 //   const { products, categories, filtered } = props;
-//   console.log(props);
+//   // console.log(props);
 
 //   useEffect(() => {
 //     filtered();
