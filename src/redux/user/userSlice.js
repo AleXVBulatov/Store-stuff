@@ -22,17 +22,15 @@ const userSlice = createSlice({
   },
   reducers: {
     addItemToCart: (state, action) => {
-      const { payload } = action;
-
       let newCart = [...state.cart];
       const found = state.cart.find((item) => item.id === action.payload.id);
 
       if (found) {
         newCart = newCart.map((item) => {
-          return item.id === payload.id ? { ...item, quantity: payload.quantity || item.quantity + 1 } : item;
+          return item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item;
         });
       } else {
-        newCart.push({ ...payload, quantity: 1 });
+        newCart.push({ ...action.payload, quantity: 1 });
       }
 
       state.cart = newCart;
@@ -56,3 +54,5 @@ const userSlice = createSlice({
 export const { addItemToCart } = userSlice.actions;
 
 export default userSlice.reducer;
+
+// return item.id === action.payload.id ? { ...item, quantity: action.payload.quantity || item.quantity + 1 } : item;

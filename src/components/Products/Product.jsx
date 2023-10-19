@@ -51,7 +51,7 @@ const Product = (props) => {
       </div>
       <div className={styles.info}>
         <h1 className={styles.title}>{title}</h1>
-        <div className={styles.price}>{price}$</div>
+        <div className={styles.price}>${price}</div>
         <div className={styles.color}>
           <span>Color: </span>Green
         </div>
