@@ -13,7 +13,7 @@ const Sidebar = (props) => {
       <div className={styles.title}>CATEGORIES</div>
       <nav>
         <ul className={styles.menu}>
-          {list.slice(0, 5).map((item) => {
+          {list.slice(0, 6).map((item) => {
             const { id, name } = item;
             return (
               <li key={id}>

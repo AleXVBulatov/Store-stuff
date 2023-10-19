@@ -5,6 +5,7 @@ import AppRoutes from "../Routes/Routes.jsx";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Sidebar from "../Sidebar/Sidebar.jsx";
+import UserForm from "../User/UserForm.jsx";
 
 import { getCategories } from "../../redux/categories/categoriesSlice.js";
 import { getProducts } from "../../redux/products/productsSlice.js";
@@ -20,6 +21,7 @@ const App = (props) => {
   return (
     <div className="app">
       <Header />
+      <UserForm />
 
       <div className="container">
         <Sidebar />
