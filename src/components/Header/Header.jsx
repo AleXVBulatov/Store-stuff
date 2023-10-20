@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "../../styles/Header.module.css";
 import { ROUTES } from "../../utils/routes.js";
 import { toggleForm } from "../../redux/user/userSlice.js";
+import { useGetProductsQuery } from "../../redux/api/apiSlice.js";
 import LOGO from "../../images/logo.svg";
 import Avatar from "../../images/avatar.jpg";
 
@@ -20,12 +21,28 @@ const Header = () => {
 
   const [values, setValues] = useState({ name: "Guest", avatar: Avatar });
 
+  // Для поиска товаров:
+  const [searchValue, setSearchValue] = useState("");
+  const { data, isLoading } = useGetProductsQuery({ title: searchValue });
+  // console.log(useGetProductsQuery());
+  // console.log(useGetProductsQuery({ title: searchValue }));
+  // console.log(data);
+
   const handleClick = () => {
     if (!currentUser) {
       dispatch(toggleForm(true));
     } else {
       navigate(ROUTES.PROFILE);
     }
+  };
+
+  // вариант 1 (без деструктуризации):
+  // const handleChange = (event) => {
+  //   setSearchValue(event.target.value);
+  // };
+  // вариант 2 (с деструктуризаций):
+  const handleChange = ({ target: { value } }) => {
+    setSearchValue(value);
   };
 
   useEffect(() => {
@@ -60,11 +77,27 @@ const Header = () => {
                 name="search"
                 placeholder="Search for anything..."
                 autoComplete="off"
-                value=""
-                onChange={() => {}}
+                value={searchValue}
+                onChange={handleChange}
               />
             </div>
-            {false && <div className={styles.box}></div>}
+            {searchValue && (
+              <div className={styles.box}>
+                {isLoading
+                  ? "Loading"
+                  : !data.length
+                  ? "No results"
+                  : data.map((elem) => {
+                      const { title, images, id } = elem;
+                      return (
+                        <Link key={id} to={`/products/${id}`} onClick={() => setSearchValue("")} className={styles.item}>
+                          <div className={styles.image} style={{ backgroundImage: `url(${images[0]})` }} />
+                          <div className={styles.title}>{title}</div>
+                        </Link>
+                      );
+                    })}
+              </div>
+            )}
           </form>
         </div>
 

@@ -18,17 +18,14 @@ const Product = (props) => {
     dispatch(addItemToCart(props));
   };
 
-  // вариант 1:
-  const [currentImage, setCurrentImage] = useState(images[0]);
+  const [currentImage, setCurrentImage] = useState();
   const [currentSize, setCurrentSize] = useState();
   const [cart, setCart] = useState({});
 
-  // вариант 2:
-  // const [currentImage, setCurrentImage] = useState();
-  // useEffect(() => {
-  //   if (!images.length) return;
-  //   setCurrentImage(images[0]);
-  // }, [images]);
+  useEffect(() => {
+    if (!images.length) return;
+    setCurrentImage(images[0]);
+  }, [images]);
 
   return (
     <section className={styles.product}>
