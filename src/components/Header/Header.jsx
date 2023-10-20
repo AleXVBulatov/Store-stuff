@@ -14,7 +14,7 @@ const Header = () => {
   const selector = useSelector((state) => {
     return state.user;
   });
-  const { currentUser } = selector;
+  const { currentUser, cart } = selector;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -111,7 +111,7 @@ const Header = () => {
             <svg className={styles["icon-cart"]}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#bag`}></use>
             </svg>
-            <span className={styles.count}>2</span>
+            {cart.length && <span className={styles.count}>{cart.length}</span>}
           </Link>
         </div>
       </div>

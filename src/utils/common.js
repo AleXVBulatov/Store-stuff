@@ -8,6 +8,8 @@ export const buildUrl = (url, params) => {
     urlWithParams += `${sign}${key}=${value}`;
   });
 
-  console.log(urlWithParams);
+  // console.log(urlWithParams);
   return urlWithParams;
 };
+
+export const sumBy = (arr) => arr.reduce((total, cur) => total + cur, 0);

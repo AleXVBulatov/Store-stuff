@@ -5,7 +5,7 @@ import { updateUser } from "../../redux/user/userSlice.js";
 
 import styles from "../../styles/Profile.module.css";
 
-const Profile = (props) => {
+const Profile = () => {
   const dispatch = useDispatch();
 
   const selector = useSelector((state) => state.user);

@@ -53,13 +53,17 @@ const userSlice = createSlice({
 
       if (found) {
         newCart = newCart.map((item) => {
-          return item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item;
+          return item.id === action.payload.id ? { ...item, quantity: action.payload.quantity || item.quantity + 1 } : item;
         });
       } else {
         newCart.push({ ...action.payload, quantity: 1 });
       }
 
       state.cart = newCart;
+    },
+
+    removeItemFromCart: (state, action) => {
+      state.cart = state.cart.filter((item) => item.id !== action.payload.id);
     },
 
     toggleForm: (state, action) => {
@@ -85,7 +89,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { addItemToCart, toggleForm, toggleFormType } = userSlice.actions;
+export const { addItemToCart, removeItemFromCart, toggleForm, toggleFormType } = userSlice.actions;
 
 export default userSlice.reducer;
 
