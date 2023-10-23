@@ -39,6 +39,7 @@ const Category = () => {
     setItems([]); // сброс при переходе между категориями
     setEnd(false); // сброс при переходе между категориями
     setParams({ ...defaultParams, categoryId: id });
+    // eslint-disable-next-line
   }, [id]);
 
   useEffect(() => {

@@ -13,7 +13,7 @@ const Cart = () => {
   const { cart } = selector;
 
   const changeQuantity = (item, quantity) => {
-    console.log(quantity);
+    // console.log(quantity);
     dispatch(addItemToCart({ ...item, quantity }));
   };
 
@@ -31,7 +31,7 @@ const Cart = () => {
           <div className={styles.list}>
             {cart.map((item) => {
               const { title, category, images, price, id, quantity } = item;
-              console.log(quantity);
+              // console.log(quantity);
               return (
                 <div key={id} className={styles.item}>
                   <div className={styles.image} style={{ backgroundImage: `url(${images[0]})` }} />

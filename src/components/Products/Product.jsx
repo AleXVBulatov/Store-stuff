@@ -20,7 +20,7 @@ const Product = (props) => {
 
   const [currentImage, setCurrentImage] = useState();
   const [currentSize, setCurrentSize] = useState();
-  const [cart, setCart] = useState({});
+  // const [cart, setCart] = useState({});
 
   useEffect(() => {
     if (!images.length) return;

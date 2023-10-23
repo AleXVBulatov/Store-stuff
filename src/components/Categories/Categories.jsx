@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/Categories.module.css";
 
 const Categories = (props) => {
-  const { title, style = {}, products = [], amount } = props;
+  const { title, products = [], amount } = props;
 
   const list = products.filter((_, i) => {
     return i < amount;
